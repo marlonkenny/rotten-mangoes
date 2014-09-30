@@ -3,7 +3,7 @@
 <%= link_to 'Add an actor', new_actor_path %>
 <hr>
 <% @movies.each do |movie| %>
-  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+  <%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
   <h3><%= formatted_date(movie.release_date) %></h3>
   <h3><%= movie.review_average %>/10</h3>
