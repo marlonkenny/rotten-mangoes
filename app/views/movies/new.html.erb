@@ -1,0 +1,32 @@
+<%= link_to 'Back to all movies', movies_path %><br/>
+
+<h2>Submit a Movie!</h2>
+<%= form_for @movie do |f| %>
+  <div>
+    <%= f.label 'title' %>
+    <%= f.text_field 'title' %>
+  </div>
+  <div>
+    <%= f.label 'release_date' %>
+    <%= f.date_field 'release_date' %>
+  </div>
+  <div>
+    <%= f.label 'director' %>
+    <%= f.text_field 'director' %>
+  </div>
+  <div>
+    <%= f.label 'runtime_in_minutes' %>
+    <%= f.number_field 'runtime_in_minutes' %>
+  </div>
+  <div>
+    <%= f.label 'poster_image_url' %>
+    <%= f.text_field 'poster_image_url' %>
+  </div>
+  <div>
+    <%= f.label 'description' %>
+    <%= f.text_area 'description' %>
+  </div>
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
