@@ -1,0 +1,32 @@
+<%= form_for @actor do |f| %>
+  <% if @actor.errors.any? %>
+    <div>
+      <%= pluralize(@actor.errors.count, 'error') %> prevented this actor from being submitted:
+      <ul>
+        <% @actor.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= f.label 'firstname' %>
+    <%= f.text_field 'firstname' %>
+  </div>
+  <div>
+    <%= f.label 'lastname' %>
+    <%= f.text_field 'lastname' %>
+  </div>
+  <div>
+    <%= f.label 'gender' %>
+    <%= f.select 'gender', ['male', 'female'], include_blank: true %>
+  </div>
+  <div>
+    <%= f.label 'birthdate' %>
+    <%= f.date_field 'birthdate' %>
+  </div>
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>

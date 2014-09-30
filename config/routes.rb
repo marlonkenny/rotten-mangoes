@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  resources :actors, only: [:new, :create]
+
   resource :users, only: [:new, :create]
 
   resource :sessions, only: [:new, :create, :destroy]

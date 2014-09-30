@@ -1,5 +1,7 @@
 class Movie < ActiveRecord::Base
   has_many :reviews
+  has_many :cast_members
+  has_many :actors, through: :cast_members
   
   validates :title, :director, :description, :poster_image_url, :release_date,
     presence: true

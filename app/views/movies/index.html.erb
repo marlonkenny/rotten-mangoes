@@ -1,5 +1,6 @@
 <h1>Rotten Mangoes</h1>
-<%= link_to 'Add a movie', new_movie_path %>
+<%= link_to 'Add a movie', new_movie_path %><br>
+<%= link_to 'Add an actor', new_actor_path %>
 <hr>
 <% @movies.each do |movie| %>
   <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>

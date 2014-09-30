@@ -10,8 +10,16 @@
 </h2>
 <h3><%= formatted_date(@movie.release_date) %></h3>
 <h3><%= @movie.review_average %>/10</h3>
-<h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h4>
+<h3>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h3>
 <p><%= @movie.description %></p>
+<% unless @movie.actors.blank? %>
+<h3>Actors</h3>
+  <ul>
+    <% @movie.actors.each do |actor| %>
+      <li><%= actor.firstname %> <%= actor.lastname %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <hr>
 
