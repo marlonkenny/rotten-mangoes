@@ -1,0 +1,10 @@
+<footer>
+  <small>
+    <% if current_user %>
+      Signed in a <%= current_user.email %> 
+        (<%= link_to 'Log out', sessions_path('current'), method: :delete %>)
+    <% else %>
+      <%= link_to 'Log in', new_sessions_path %> | <%= link_to 'Sign Up', new_users_path %>
+    <% end %>
+  </small>
+</footer>
