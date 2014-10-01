@@ -1,6 +1,6 @@
 <%= link_to 'Back to all movies', movies_path %><br/>
 
-<%= link_to image_tag(@movie.image_url), movie_path(@movie) %>
+<%= link_to image_tag(@movie.image_url), movie_path(@movie) %><br/>
 <h2>
   <%= @movie.title %> (<%= link_to 'edit', edit_movie_path(@movie) %>, 
     <%= link_to 'delete', movie_path(@movie), 
@@ -11,7 +11,7 @@
 <h3><%= formatted_date(@movie.release_date) %></h3>
 <h3><%= @movie.review_average %>/10</h3>
 <h3>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h3>
-<p><%= @movie.description %></p>
+<p class="lead"><%= @movie.description %></p>
 <% unless @movie.actors.blank? %>
 <h3>Actors</h3>
   <ul>
@@ -31,7 +31,7 @@
     <% @movie.reviews.each do |review| %>
       <p><%= review.text %></p>
       <p><%= review.rating_out_of_ten %>/10</p>
-      <small>- <%= review.user.email %></small><br/>
+      <small>- <%= link_to review.user.email, user_path(review.user) %></small><br/>
     <% end %>
   <% end %>
   <p><%= link_to 'Write a review!', new_movie_review_path(@movie) %></p>

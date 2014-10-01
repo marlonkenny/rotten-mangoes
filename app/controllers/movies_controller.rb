@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.search(params[:search])
-    puts @movies.inspect
+    @movies = Movie.search(params[:search]).order(params[:order_by].to_s)
   end
 
   def show

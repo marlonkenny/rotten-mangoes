@@ -18,19 +18,13 @@ class Movie < ActiveRecord::Base
 
   def self.search(search)
     if search
-      title_search(search['title']).director_search(search['director']).duration(search['duration'])
+      search_like(search['query']).duration(search['duration'])
     else
       all
     end
   end
 
-  def self.title_search(title)
-    where('title LIKE ?', "%#{title}%")
-  end
-
-  def self.director_search(director)
-    where('director LIKE ?', "%#{director}%")
-  end
+  scope :search_like, ->(query) { where('title LIKE :q OR director LIKE :q', q: "%#{query}%")}
 
   scope :runtime_over, ->(time) { where('runtime_in_minutes >= ?', time) }
   scope :runtime_under, ->(time) { where('runtime_in_minutes <= ?', time) }

@@ -1,0 +1,13 @@
+<%= link_to 'Back to movies', movies_path %><br/>
+
+<h3><%= @user.firstname %> <%= @user.lastname %></h3>
+<hr>
+
+<% @user.reviews.each do |review| %>
+  <div>
+    <p>Movie: <%= link_to review.movie.title, movie_path(review.movie) %></p>
+    <p>Rating: <%= review.rating_out_of_ten %>/10</p>
+    <p><%= review.text %></p>
+  </div>
+  <hr>
+<% end %>

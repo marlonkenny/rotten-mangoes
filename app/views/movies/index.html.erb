@@ -1,20 +1,20 @@
-<%= form_tag movies_path, method: :get do %>
-  <%= text_field_tag 'search[title]', '', placeholder: 'Title' %>
-  <%= text_field_tag 'search[director]', '', placeholder: 'Director' %>
-  <%= select_tag 'search[duration]', 
-    options_for_select([['Any duration','any'], ['Under 90 minuts', '90'], ['Between 90 and 120 minutes', '90_120'], ['Greater than 120 minutes', '120']]) %>
-  <%= submit_tag "Search", name: nil %>
+<%= form_tag movies_path, method: :get, class: 'form-inline' do %>
+  <%= label_tag 'Filters' %>
+  <div class="form-group">
+    <%= text_field_tag 'search[query]', '', placeholder: 'Title/Director', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= select_tag 'search[duration]',
+      options_for_select([['Any duration','any'], ['Under 90 minuts', '90'], ['Between 90 and 120 minutes', '90_120'], ['Greater than 120 minutes', '120']]), { class: 'form-control' } %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'Order By:' %>
+    <%= select_tag 'order_by',
+      options_for_select([['Title', 'title'],['Created Date', 'created_at']]), { class: 'form-control' }  %>
+  </div>
+  <%= submit_tag "Update", name: nil, class: 'btn btn-default' %>
 <% end %>
 
 <hr>
-<% @movies.each do |movie| %>
-  <%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <% if movie.review_average > 0 %>
-    <h3><%= movie.review_average %>/10</h3>
-  <% end %>
-  <h3>Released: <%= formatted_date(movie.release_date) %> | Runtime: <%= movie.runtime_in_minutes %> minutes</h3>
-  <h4>Directed by <%= movie.director %></h4>
-  <p><%= movie.description %></p>
-  <hr>
-<% end %>
+
+<%= render @movies %>

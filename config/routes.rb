@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :actors, only: [:new, :create]
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update, :show]
 
   resource :session, only: [:new, :create, :destroy]
 
