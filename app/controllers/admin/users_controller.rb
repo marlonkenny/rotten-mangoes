@@ -44,10 +44,30 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path, notice: "#{@user.firstname}'s account has been destroyed."
   end
 
+  def switch_to
+    user = User.find(params[:user_id])
+
+    if user.admin
+      redirect_to admin_users_path, notice: "You can't switch into admin accounts"
+    else
+      session[:remember_admin] = session[:user_id]
+      session[:user_id] = user.id
+      redirect_to movies_path, notice: "Switched into #{user.firstname}'s account"
+    end
+  end
+
+  def switch_back
+    user = User.find(session[:remember_admin])
+    session[:user_id] = user.id
+    session[:remember_admin] = nil
+
+    redirect_to movies_path, notice: "Switched back to admin account, #{user.firstname}"
+  end
+
   private
 
   def only_admin
-    unless current_user.admin
+    unless current_user.admin || switched_from_admin?
       flash[:alert] = "Admin only"
       redirect_to root_path
     end

@@ -1,5 +1,8 @@
 <footer>
   <small>
+    <% if switched_from_admin? %>
+      <%= link_to 'Switch back to account', admin_user_switch_back_path(session[:user_id]), method: :delete %>
+    <% end %>
     <% if current_user %>
       <% if current_user.admin %>
         <%= link_to 'Admin', admin_users_path %> |

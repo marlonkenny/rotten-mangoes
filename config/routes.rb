@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do
-    resources :users
+    resources :users do
+      #custom action to switch user
+      post   :switch_to
+      delete :switch_back
+    end
   end
 
   root to: 'movies#index'
