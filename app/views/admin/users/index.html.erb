@@ -1,13 +1,27 @@
-<h1>All Users:</h1>
-<% @users.each do |user| %>
-  <div>
-    <p>
-      <%= user.firstname %> 
-      <%= user.lastname %>, 
-      <%= user.email %>
-      <% if user.admin %>
-        <em>Admin</em>
-      <% end %>
-    </p>  
-  </div>
-<% end %>
+<h2>All Users:</h2>
+<%= link_to 'Create a new user', new_admin_user_path %><br/>
+<table>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Action</th>
+    </tr>
+    <%= paginate @users %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.firstname %></td>
+        <td><%= user.lastname %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.admin %>
+            Yes
+          <% else %>
+            No
+          <% end %>
+        </td>
+        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </table>

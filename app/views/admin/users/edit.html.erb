@@ -1,0 +1,8 @@
+<h1>Edit User</h1>
+<%= link_to 'Back to users', admin_users_path %>
+
+<%= form_for @user, url: admin_users_path(@user), html: { method: :put } do |f| %>
+
+<%= render 'form', f: f %>
+
+<% end %>

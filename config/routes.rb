@@ -6,12 +6,12 @@ Rails.application.routes.draw do
 
   resources :actors, only: [:new, :create]
 
-  resource :users, only: [:new, :create]
+  resource :users, only: [:new, :create, :edit, :update]
 
   resource :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do
-    resources :users, only: :index
+    resources :users
   end
 
   root to: 'movies#index'
