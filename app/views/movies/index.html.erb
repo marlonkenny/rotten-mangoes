@@ -1,8 +1,10 @@
-<h1>Rotten Mangoes</h1>
+<h1><%= link_to 'Rotten Mangoes', root_path %></h1>
 <%= form_tag movies_path, method: :get do %>
   <%= label_tag :search %>
-  <%= text_field_tag 'search[title]', params[:search]['title'], placeholder: 'Title' %>
-  <%= text_field_tag 'search[director]', params[:search]['director'], placeholder: 'Director' %>
+  <%= text_field_tag 'search[title]', '', placeholder: 'Title' %>
+  <%= text_field_tag 'search[director]', '', placeholder: 'Director' %>
+  <%= select_tag 'search[duration]', 
+    options_for_select([['Any duration','any'], ['Under 90 minuts', '90'], ['Between 90 and 120 minutes', '90_120'], ['Greater than 120 minutes', '120']]) %>
   <%= submit_tag "Search", name: nil %>
 <% end %>
 
@@ -14,7 +16,9 @@
 <% @movies.each do |movie| %>
   <%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= movie.review_average %>/10</h3>
+  <% if movie.review_average > 0 %>
+    <h3><%= movie.review_average %>/10</h3>
+  <% end %>
   <h3>Released: <%= formatted_date(movie.release_date) %> | Runtime: <%= movie.runtime_in_minutes %> minutes</h3>
   <h4>Directed by <%= movie.director %></h4>
   <p><%= movie.description %></p>
