@@ -1,4 +1,5 @@
 <h2>All Users:</h2>
+<%= link_to 'Back to movies', root_path %><br/>
 <%= link_to 'Create a new user', new_admin_user_path %><br/>
 <table>
     <tr>
@@ -6,7 +7,8 @@
       <th>Lastname</th>
       <th>Email</th>
       <th>Admin</th>
-      <th>Action</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
     <%= paginate @users %>
     <% @users.each do |user| %>
@@ -22,6 +24,7 @@
           <% end %>
         </td>
         <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+        <td><%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </table>
