@@ -6,13 +6,13 @@ Rails.application.routes.draw do
 
   resources :actors, only: [:new, :create]
 
-  resource :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update]
 
-  resource :sessions, only: [:new, :create, :destroy]
+  resource :session, only: [:new, :create, :destroy]
 
   namespace :admin do
     resources :users do
-      #custom action to switch user
+      #custom action to impersonate user
       post   :switch_to
       delete :switch_back
     end

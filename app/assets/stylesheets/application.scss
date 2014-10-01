@@ -1,2 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "/*.css.scss";
+
+.alert-container {
+  position: fixed;
+  width: 40%;
+}

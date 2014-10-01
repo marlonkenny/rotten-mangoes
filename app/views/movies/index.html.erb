@@ -1,6 +1,4 @@
-<h1><%= link_to 'Rotten Mangoes', root_path %></h1>
 <%= form_tag movies_path, method: :get do %>
-  <%= label_tag :search %>
   <%= text_field_tag 'search[title]', '', placeholder: 'Title' %>
   <%= text_field_tag 'search[director]', '', placeholder: 'Director' %>
   <%= select_tag 'search[duration]', 
@@ -8,10 +6,6 @@
   <%= submit_tag "Search", name: nil %>
 <% end %>
 
-
-
-<%= link_to 'Add a movie', new_movie_path %><br>
-<%= link_to 'Add an actor', new_actor_path %>
 <hr>
 <% @movies.each do |movie| %>
   <%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) %>

@@ -7,17 +7,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value) %>
-  <% end %>
+  <div class="alert-container">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <strong>Hey Bud!</strong> <%= value %>
+      </div>
+    <% end %>
+  </div>
 <nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <%= link_to 'Rotten Mangoes', root_path, class: 'navbar-brand' %>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'Rotten Mangoes', root_path, class: 'navbar-brand' %>
+    </div>
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to 'Add a movie', new_movie_path %></li>
+      <li><%= link_to 'Add an actor', new_actor_path %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if switched_from_admin? %>
+        <li><%= link_to 'Switch back to account', admin_user_switch_back_path(session[:user_id]), method: :delete %></li>
+      <% end %>
+      <% if current_user %>
+      <li><a>Signed in as <%= current_user.email %></a></li>
+      <% if current_user.admin %>
+        <li><%= link_to 'Admin Panel', admin_users_path %></li>
+      <% end %>
+      <li><%= link_to 'Log out', session_path('current'), method: :delete %></li>
+      <% else %>
+      <li><%= link_to 'Log in', new_session_path %></li>
+      <li><%= link_to 'Sign Up', new_user_path %></li>
+      <% end %>
+    </ul>
   </div>
 </nav>
 
+<div class="container-fluid">
 <%= yield %>
+</div>
 
-<%= render 'layouts/footer' %>
 </body>
 </html>

@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'kaminari'
