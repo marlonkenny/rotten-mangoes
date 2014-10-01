@@ -1,13 +1,22 @@
 <h1>Rotten Mangoes</h1>
+<%= form_tag movies_path, method: :get do %>
+  <%= label_tag :search %>
+  <%= text_field_tag 'search[title]', params[:search]['title'], placeholder: 'Title' %>
+  <%= text_field_tag 'search[director]', params[:search]['director'], placeholder: 'Director' %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+
+
+
 <%= link_to 'Add a movie', new_movie_path %><br>
 <%= link_to 'Add an actor', new_actor_path %>
 <hr>
 <% @movies.each do |movie| %>
   <%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= formatted_date(movie.release_date) %></h3>
   <h3><%= movie.review_average %>/10</h3>
-  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
+  <h3>Released: <%= formatted_date(movie.release_date) %> | Runtime: <%= movie.runtime_in_minutes %> minutes</h3>
+  <h4>Directed by <%= movie.director %></h4>
   <p><%= movie.description %></p>
   <hr>
 <% end %>

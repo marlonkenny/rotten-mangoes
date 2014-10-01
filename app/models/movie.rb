@@ -16,4 +16,19 @@ class Movie < ActiveRecord::Base
     reviews.sum(:rating_out_of_ten)/reviews.size
   end
 
+  def self.search(search)
+    if search
+      title_search(search['title']).director_search(search['director'])
+    else
+      all
+    end
+  end
+  
+  def self.title_search(title)
+    where('title LIKE ?', "%#{title}%")
+  end
+
+  def self.director_search(director)
+    where('director LIKE ?', "%#{director}%")
+  end
 end
