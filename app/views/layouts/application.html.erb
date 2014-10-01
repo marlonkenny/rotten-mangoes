@@ -10,6 +10,11 @@
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value) %>
   <% end %>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <%= link_to 'Rotten Mangoes', root_path, class: 'navbar-brand' %>
+  </div>
+</nav>
 
 <%= yield %>
 

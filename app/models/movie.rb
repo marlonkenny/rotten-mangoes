@@ -24,9 +24,6 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  scope :runtime_over, ->(time) { where('runtime_in_minutes >= ?', time) }
-  scope :runtime_under, ->(time) { where('runtime_in_minutes <= ?', time) }
-
   def self.title_search(title)
     where('title LIKE ?', "%#{title}%")
   end
@@ -34,6 +31,9 @@ class Movie < ActiveRecord::Base
   def self.director_search(director)
     where('director LIKE ?', "%#{director}%")
   end
+
+  scope :runtime_over, ->(time) { where('runtime_in_minutes >= ?', time) }
+  scope :runtime_under, ->(time) { where('runtime_in_minutes <= ?', time) }
 
   def self.duration(duration)
     case duration
