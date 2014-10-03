@@ -9,4 +9,9 @@ namespace :populate do
   task rtapi: :environment do
     MovieImporter.new.populate
   end
+
+  desc "get descriptions from TMDB"
+  task tmdb_descriptions: :environment do
+    MovieImporter.new.find_descriptions
+  end
 end

@@ -2,6 +2,7 @@ class MovieImporter
 include RottenTomatoes
   
   Rotten.api_key = "xg8vg3f9v5f74wqjazrpmtae"
+  Tmdb::Api.key("db378675c22f6b4f0383f6415a7957ea")
 
   def initialize
     @filename = "#{::Rails.root}/db/movie_list.csv"
@@ -51,4 +52,23 @@ include RottenTomatoes
     end
   end
 
+  def find_descriptions
+    puts 'starting'
+    Movie.find_each(start: 313, batch_size: 100) do |m|
+      if m.description.start_with?('Lorem')
+        @search = Tmdb::Search.new
+        @search.resource('movie') # determines type of resource
+        @search.query(m.title) # the query to search against
+        @search.year(m.release_date.year) if m.release_date
+        result = @search.fetch[0]
+        if result
+          movie = Tmdb::Movie.detail(result.id)
+          m.description = movie.overview
+          m.save
+          sleep(1.0/3.0)
+          print "#{m.id}-#{m.title} | " ; STDOUT.flush
+        end
+      end
+    end
+  end
 end

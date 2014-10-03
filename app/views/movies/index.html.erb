@@ -1,13 +1,13 @@
 <%= form_tag movies_path, method: :get, class: 'form-inline' do %>
   <%= label_tag 'Filters' %>
   <div class="form-group">
-    <%= text_field_tag 'search[query]', '', placeholder: 'Title/Director', class: 'form-control' %>
+    <%= text_field_tag 'search[query]', @query, placeholder: 'Title/Director', class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= label_tag 'Between' %>
-    <%= number_field 'search', 'duration_a', class: 'duration form-control' %>
+    <%= number_field_tag 'search[duration_a]', @duration_a, class: 'duration form-control' %>
     <%= label_tag 'and' %>
-    <%= number_field 'search', 'duration_b', class: 'duration form-control' %>
+    <%= number_field_tag 'search[duration_b]', @duration_b, class: 'duration form-control' %>
     <%= label_tag 'minutes' %>
   </div>
   |
