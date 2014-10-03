@@ -1,4 +1,4 @@
 == Rotten Mangoes
 
-= Add and search for your favorite flicks!
+=== Add and search for your favorite flicks!
 
