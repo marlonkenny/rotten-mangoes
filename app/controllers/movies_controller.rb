@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.search(params[:search]).order(params[:order_by].to_s)
+    @movies = Movie.search(params[:search]).order(params[:order_by].to_s).page(params[:page])
   end
 
   def show

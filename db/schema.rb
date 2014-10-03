@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930214638) do
+ActiveRecord::Schema.define(version: 20141002230549) do
 
   create_table "actors", force: true do |t|
     t.string   "firstname"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20140930214638) do
   add_index "cast_members", ["actor_id"], name: "index_cast_members_on_actor_id"
   add_index "cast_members", ["movie_id"], name: "index_cast_members_on_movie_id"
 
+  create_table "directors", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "movies", force: true do |t|
     t.string   "title"
     t.string   "director"
@@ -42,7 +49,11 @@ ActiveRecord::Schema.define(version: 20140930214638) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.string   "rt_score"
+    t.integer  "director_id"
   end
+
+  add_index "movies", ["director_id"], name: "index_movies_on_director_id"
 
   create_table "reviews", force: true do |t|
     t.integer  "user_id"

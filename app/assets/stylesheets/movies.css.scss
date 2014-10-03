@@ -2,5 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 h1, h2, h3, h4 {
-  display: inline;
+  margin: 0;
+}
+.form-control.duration {
+  width: 70px;
+}
+.movie {
+  .poster-small img {
+    float:left;
+    width: 100%;
+    margin-right: 10px;
+  }
 }

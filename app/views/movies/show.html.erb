@@ -1,6 +1,6 @@
 <%= link_to 'Back to all movies', movies_path %><br/>
 
-<%= link_to image_tag(@movie.image_url), movie_path(@movie) %><br/>
+<%= link_to image_tag(@movie.poster_image_url), movie_path(@movie) %><br/>
 <h2>
   <%= @movie.title %> (<%= link_to 'edit', edit_movie_path(@movie) %>, 
     <%= link_to 'delete', movie_path(@movie), 
@@ -8,8 +8,16 @@
      confirm: 'Are you sure?' %>
   )
 </h2>
-<h3><%= formatted_date(@movie.release_date) %></h3>
-<h3><%= @movie.review_average %>/10</h3>
+<% if @movie.release_date %>
+  <h3><%= formatted_date(@movie.release_date) %></h3>
+<% end %>
+
+<% if @movie.review_average > 0 %>
+  <h3><%= @movie.review_average %>/10</h3>
+<% else %>
+  <h3>No reviews yet</h3>
+<% end %>
+
 <h3>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h3>
 <p class="lead"><%= @movie.description %></p>
 <% unless @movie.actors.blank? %>

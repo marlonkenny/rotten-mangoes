@@ -42,4 +42,5 @@ gem 'autoprefixer-rails'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'kaminari'
+require 'rottentomatoes'
 
