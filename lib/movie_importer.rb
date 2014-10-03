@@ -37,8 +37,7 @@ include RottenTomatoes
       rt_m = RottenMovie.find(
         title:          m.title, 
         limit:          1,
-      )
-  
+      )  
       unless rt_m.blank?
         m.runtime_in_minutes = rt_m.runtime if m.runtime_in_minutes.blank? && rt_m.runtime
         m.description = rt_m.synopsis if m.description.blank? && rt_m.synopsis 
